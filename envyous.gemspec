@@ -1,0 +1,16 @@
+
+Gem::Specification.new do |s|
+  s.name        = 'envyous'
+  s.version     = '1.0.0.alpha.1'
+  s.date        = '2014-12-11'
+  s.summary     = "Environmentally-friendly config!"
+  s.description = "Environmentally-friendly config!"
+  s.authors     = ["Brian Lauber"]
+  s.email       = 'constructible.truth@gmail.com'
+  s.files       = Dir["lib/**/*.rb"]
+  s.license     = "MIT"
+
+  s.add_dependency "confickle"
+  s.add_dependency "rake"
+end
+
