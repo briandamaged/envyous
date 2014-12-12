@@ -1,7 +1,7 @@
 
 Gem::Specification.new do |s|
   s.name        = 'envyous'
-  s.version     = '1.0.0.alpha.1'
+  s.version     = '1.0.0.alpha.2'
   s.date        = '2014-12-11'
   s.summary     = "Environmentally-friendly config!"
   s.description = "Environmentally-friendly config!"
