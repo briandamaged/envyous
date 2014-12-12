@@ -2,16 +2,25 @@
 require 'confickle'
 
 module Envyous
-  class NoEnvironmentSpecified < Exception
+  class EnvironmentNotSpecified < Exception
   end
 
-  class EmptyString < Exception
+  class EnvironmentNameIsEmpty < Exception
+  end
+
+  class EnvironmentRootDoesNotExist < Exception
   end
 
   def self.config(options)
     c = Context.new(options)
 
-    c.confickle
+    retval = c.confickle
+
+    unless File.exists?(retval.root)
+      raise EnvironmentRootDoesNotExist.new(retval.root)
+    end
+
+    retval
   end
 
 
@@ -57,12 +66,12 @@ module Envyous
       @env_name ||= begin
         name = ENV.fetch(env_var) do
           envyous_opts.fetch(:env) do
-            raise NoEnvironmentSpecified
+            raise EnvironmentNotSpecified
           end
         end
 
         if name.empty?
-          raise EmptyString
+          raise EnvironmentNameIsEmpty
         end
 
         name
