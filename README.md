@@ -138,3 +138,23 @@ This command will copy the configuration template into the configuration directo
 
 The ```rake config:soft_init``` command behaves similarly, but it will not raise an exception when the configuration directory already exists.  Instead, it will quietly refuse to overwrite the configuration directory.  This task is intended to be used as a dependency rather than invoked directly.
 
+
+## Nitpicky Setup ##
+
+Here are some various other ways that you can customize Envyous.
+
+### Use a different environment variable ###
+
+Suppose your application is already using the ```ENV``` environment variable for other purposes.  No worries - you can simply instruct Envyous to reference a different environment variable.  You just need to specify the ```:env_var``` key when obtaining your application's configuration:
+
+    require 'envyous'
+
+    config = Envyous.config(
+      root:    "path/to/config/root",
+      env_var: "MY_CUSTOM_ENV"
+    )
+
+Now, end-users can specify the configuration profile using the environment variable that you specified:
+
+    MY_CUSTOM_ENV=qa bundle exec ruby ./my_application
+
